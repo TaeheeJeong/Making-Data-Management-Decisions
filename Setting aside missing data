@@ -41,3 +41,39 @@ print(I11a)
 0.000000     399
 nan            5
 Name: H1GI11, dtype: int64
+
+####
+<code>
+print 'What language is usually spoken in your home?  '
+print 'counts for original H1GI10'
+I10 = data1['H1GI10'].value_counts(sort=True, dropna=False)
+print(I10)
+
+<output>
+What language is usually spoken in your home?  
+counts for original H1GI10
+1    6046
+2     314
+3     141
+8       2
+6       1
+Name: H1GI10, dtype: int64
+
+<code> 
+# recode missing values to python missing (NaN)
+data1['H1GI10']=data1['H1GI10'].replace(6, np.nan)
+data1['H1GI10']=data1['H1GI10'].replace(8, np.nan)
+
+#if you want to include a count of missing add ,dropna=False 
+print 'counts for H1GI10 with 6/8 set to NAN and number of missing requested'
+I10a = data1['H1GI10'].value_counts(sort=True, dropna=False)
+print(I10a)
+
+<output>
+counts for H1GI10 with 6/8 set to NAN and number of missing requested
+1.000000    6046
+2.000000     314
+3.000000     141
+nan            3
+Name: H1GI10, dtype: int64
+
