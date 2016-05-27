@@ -1,0 +1,49 @@
+### Creating secondary variables
+
+#new Eng_US variable, 
+#who is born in United State and speak English at home as 0
+#who is born in United State but speak other language at home as 1
+#who is not born in United State and speak English at home as 2
+#who is not born in United State but speak other language at home as 3
+
+<code>
+def Eng_US (row):
+   if row['H1GI11'] == 1 and row['H1GI10'] == 1:
+      return 0
+   if row['H1GI11'] == 1 and row['H1GI10'] != 1:
+      return 1
+   if row['H1GI11'] != 1 and row['H1GI10'] == 1:
+      return 2
+   if row['H1GI11'] != 1 and row['H1GI10'] != 1:
+      return 3
+
+data1['Eng_US'] = data1.apply (lambda row: Eng_US (row),axis=1)
+
+# subset variables in new data frame, sub1
+sub1=data1[['AID','H1GI11', 'H1GI10', 'Eng_US']]
+
+a = sub1.head (n=20)
+print(a)      
+
+<output>
+         AID   H1GI11   H1GI10  Eng_US
+0   57100270 1.000000 1.000000       0
+1   57101310 1.000000 1.000000       0
+2   57103171 1.000000 1.000000       0
+3   57103869 1.000000 1.000000       0
+4   57104553 0.000000 3.000000       3
+5   57104649 1.000000 1.000000       0
+6   57104676 1.000000 1.000000       0
+7   57109625 1.000000 1.000000       0
+8   57110897 1.000000 1.000000       0
+9   57111071 1.000000 1.000000       0
+10  57111786 1.000000 1.000000       0
+11  57113943 1.000000 1.000000       0
+12  57116359 1.000000 1.000000       0
+13  57117542 1.000000 1.000000       0
+14  57117997 1.000000 1.000000       0
+15  57118381 1.000000 1.000000       0
+16  57118943 1.000000 1.000000       0
+17  57120005 1.000000 1.000000       0
+18  57120046 0.000000 1.000000       2
+19  57120371 1.000000 1.000000       0
