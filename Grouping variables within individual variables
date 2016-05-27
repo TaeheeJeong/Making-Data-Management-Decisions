@@ -1,0 +1,63 @@
+### Grouping variables within individual variables
+
+
+#examining frequency distributions for age
+<code>
+print 'counts for AGE'
+c3 = data1['AGE'].value_counts(sort=False)
+print(c3)
+
+<output>
+counts for AGE
+18.3424657534247      43
+20.7643835616438       2
+18.5945205479452      63
+14.2630136986301      14
+18.2630136986301      10
+13.5917808219178      16
+                    1667
+                    ...
+                    
+<code>
+print 'percentages for AGE'
+p3 = data1['AGE'].value_counts(sort=False, normalize=True)
+print (p3)
+
+<output>
+percentages for AGE
+18.3424657534247   0.006611
+20.7643835616438   0.000308
+18.5945205479452   0.009686
+14.2630136986301   0.002153
+18.2630136986301   0.001538
+13.5917808219178   0.002460
+                   0.256304
+                   ...
+                   
+# quartile split (use qcut function & ask for 4 groups - gives you quartile split)
+<code>
+data1['AGE'] = data1['AGE'].convert_objects(convert_numeric=True)
+print 'AGE -quartiles'
+print(data1['AGE']).quantile([0,.25,.5,.75,1])
+
+<output>
+AGE -quartiles
+0.000000   12.676712
+0.250000   15.257534
+0.500000   16.512329
+0.750000   17.761644
+1.000000   21.934247
+Name: AGE, dtype: float64
+
+# categorize quantitative variable based on customized splits using cut function
+# splits into 3 groups (12-15, 16-18, 18-22) 
+<code>
+data1['AGEGROUP'] = pd.cut(data1.AGE, [12, 15, 18, 22])
+c5 = data1['AGEGROUP'].value_counts(sort=False, dropna=True)
+print(c5)
+
+<output>
+(12, 15]     947
+(15, 18]    2876
+(18, 22]    1014
+dtype: int64
