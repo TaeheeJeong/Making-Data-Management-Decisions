@@ -1,0 +1,17 @@
+## Coding in valid data and recoding values
+
+<code>
+#recode 7 values as 1 in this example
+data1['H1GI11']=data1['H1GI11'].replace(7, 1)
+
+print 'H1GI11 with 7 recoded as set to 1'
+I11b = data1['H1GI11'].value_counts(sort=True, dropna=False)
+print(I11b)
+
+<output> 
+H1GI11 with 7 recoded as set to 1
+1.000000    6100
+0.000000     399
+nan            5
+Name: H1GI11, dtype: int64
+
